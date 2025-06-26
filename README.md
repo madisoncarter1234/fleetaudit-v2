@@ -124,7 +124,10 @@ fleetv2/
 
 ## 🚀 Deployment
 
-### Vercel (Recommended)
+### One-Click Deploy to Vercel
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/madisoncarter1234/fleetaudit-v2&env=ANTHROPIC_API_KEY&envDescription=Your%20Anthropic%20Claude%20API%20Key&envLink=https://console.anthropic.com/)
+
+### Manual Vercel Deployment
 ```bash
 # Install Vercel CLI
 npm i -g vercel
