@@ -31,110 +31,102 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="hero-gradient text-white py-16 px-4 rounded-2xl mx-4 mt-4 mb-8 shadow-2xl">
-        <div className="container mx-auto text-center">
-          <h1 className="text-5xl font-bold mb-6">
+      <section className="hero-gradient text-white py-20 px-6 mx-6 mt-6 mb-12">
+        <div className="container mx-auto text-center relative z-10">
+          <h1 className="hero-title fade-in-up">
             FleetAudit.io
           </h1>
-          <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto">
+          <p className="hero-subtitle max-w-4xl mx-auto fade-in-up">
             AI-powered fleet fraud detection that analyzes fuel, GPS, and job data to uncover theft, 
-            misuse, and policy violations in real-time.
+            misuse, and policy violations in real-time. Protect your fleet with advanced analytics.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/app">
-              <Button size="lg" variant="outline" className="bg-white text-primary hover:bg-gray-50">
-                Try FleetAudit Now
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </Button>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center fade-in-up">
+            <Link href="/app" className="btn-primary text-lg px-8 py-4">
+              Try FleetAudit Now
+              <ChevronRight className="ml-2 h-5 w-5" />
             </Link>
-            <Button size="lg" variant="ghost" className="text-white border-white hover:bg-white/10">
+            <button className="btn-secondary text-lg px-8 py-4">
               Watch Demo
-            </Button>
+            </button>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-16 px-4">
+      <section className="py-20 px-6">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 text-primary">
+          <h2 className="section-title fade-in-up">
             Advanced Fraud Detection Capabilities
           </h2>
           
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <Card className="feature-card">
-              <CardHeader>
-                <AlertTriangle className="h-8 w-8 text-red-500 mb-2" />
-                <CardTitle className="text-primary">Shared Card Detection</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>Identifies when the same fuel card is used by multiple drivers or vehicles within suspicious timeframes.</p>
-              </CardContent>
-            </Card>
+          <div className="grid md:grid-cols-3 gap-8 mb-20">
+            <div className="feature-card fade-in-up">
+              <AlertTriangle className="h-12 w-12 text-danger mb-4" />
+              <h3 className="text-xl font-bold text-primary mb-4">Shared Card Detection</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Identifies when the same fuel card is used by multiple drivers or vehicles within suspicious timeframes.
+              </p>
+            </div>
 
-            <Card className="feature-card">
-              <CardHeader>
-                <Shield className="h-8 w-8 text-orange-500 mb-2" />
-                <CardTitle className="text-primary">After-Hours Monitoring</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>Flags fuel purchases outside business hours and identifies personal use patterns during off-time.</p>
-              </CardContent>
-            </Card>
+            <div className="feature-card fade-in-up">
+              <Shield className="h-12 w-12 text-warning mb-4" />
+              <h3 className="text-xl font-bold text-primary mb-4">After-Hours Monitoring</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Flags fuel purchases outside business hours and identifies personal use patterns during off-time.
+              </p>
+            </div>
 
-            <Card className="feature-card">
-              <CardHeader>
-                <TrendingUp className="h-8 w-8 text-blue-500 mb-2" />
-                <CardTitle className="text-primary">Ghost Job Analysis</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>Cross-references scheduled jobs with GPS data to identify phantom work orders and location fraud.</p>
-              </CardContent>
-            </Card>
+            <div className="feature-card fade-in-up">
+              <TrendingUp className="h-12 w-12 text-primary mb-4" />
+              <h3 className="text-xl font-bold text-primary mb-4">Ghost Job Analysis</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Cross-references scheduled jobs with GPS data to identify phantom work orders and location fraud.
+              </p>
+            </div>
           </div>
 
           {/* Demo Section */}
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-center mb-8 text-primary">
+          <div className="bg-white rounded-3xl shadow-2xl p-10 fade-in-up">
+            <h2 className="text-4xl font-bold text-center mb-6 text-primary">
               Interactive Demo Scenarios
             </h2>
-            <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto text-lg leading-relaxed">
               Explore real-world examples of fleet fraud detection. Each scenario represents actual patterns 
-              found in fleet operations, with estimated financial impact.
+              found in fleet operations, with estimated financial impact and detailed violation analysis.
             </p>
 
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
               {demoScenarios.map((scenario) => (
-                <Card 
+                <div 
                   key={scenario.id}
-                  className={`cursor-pointer transition-all duration-300 hover:shadow-lg ${
-                    selectedDemo?.id === scenario.id ? 'ring-2 ring-primary' : ''
+                  className={`demo-card p-6 ${
+                    selectedDemo?.id === scenario.id ? 'selected' : ''
                   }`}
                   onClick={() => setSelectedDemo(scenario)}
                 >
-                  <CardHeader>
-                    <CardTitle className="text-lg">{scenario.name}</CardTitle>
-                    <CardDescription>{scenario.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Vehicles:</span>
-                        <span className="font-medium">{scenario.vehicles}</span>
+                  <h3 className="text-xl font-bold text-primary mb-3">{scenario.name}</h3>
+                  <p className="text-gray-600 mb-6 text-sm leading-relaxed">{scenario.description}</p>
+                  
+                  <div className="space-y-4">
+                    <div className="metric-card">
+                      <div className="metric-value text-primary">{scenario.vehicles}</div>
+                      <div className="metric-label text-gray-500">Vehicles</div>
+                    </div>
+                    
+                    <div className="flex justify-between items-center">
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-danger">{scenario.summary.total_violations}</div>
+                        <div className="text-xs text-gray-500 uppercase tracking-wide">Violations</div>
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Violations:</span>
-                        <span className="font-medium text-red-600">{scenario.summary.total_violations}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Est. Loss:</span>
-                        <span className="font-bold text-red-600">{formatCurrency(scenario.summary.total_estimated_loss)}</span>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-danger">{formatCurrency(scenario.summary.total_estimated_loss)}</div>
+                        <div className="text-xs text-gray-500 uppercase tracking-wide">Est. Loss</div>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               ))}
             </div>
 
@@ -214,19 +206,18 @@ export default function LandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-4 bg-gray-50">
+      <section className="py-20 px-6 bg-primary">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6 text-primary">
+          <h2 className="text-4xl font-bold mb-6 text-white">
             Ready to Protect Your Fleet?
           </h2>
-          <p className="text-xl mb-8 text-gray-600 max-w-2xl mx-auto">
-            Start detecting fraud in your fleet operations today. Upload your data and get instant AI-powered analysis.
+          <p className="text-xl mb-10 text-white opacity-90 max-w-3xl mx-auto leading-relaxed">
+            Start detecting fraud in your fleet operations today. Upload your data and get instant AI-powered analysis 
+            with professional reports and actionable insights.
           </p>
-          <Link href="/app">
-            <Button size="lg" variant="fleetaudit" className="text-lg px-8 py-3">
-              Start Free Analysis
-              <ChevronRight className="ml-2 h-5 w-5" />
-            </Button>
+          <Link href="/app" className="btn-primary bg-white text-primary hover:bg-gray-100 text-xl px-12 py-5 shadow-2xl">
+            Start Free Analysis
+            <ChevronRight className="ml-3 h-6 w-6" />
           </Link>
         </div>
       </section>
