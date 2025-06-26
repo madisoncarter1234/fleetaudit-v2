@@ -72,59 +72,74 @@ export default function AppPage() {
   const hasResults = analysisState.fraud_results
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-4xl mx-auto px-6 py-4">
+      <header className="bg-white shadow-lg border-b border-blue-100">
+        <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2 text-primary hover:text-primary/80">
+            <Link href="/" className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors">
               <ArrowLeft className="h-5 w-5" />
-              <span className="font-semibold">Back to Home</span>
+              <span className="font-semibold">Back to Demo</span>
             </Link>
-            <h1 className="text-2xl font-bold">FleetAudit Analysis</h1>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                <Upload className="h-4 w-4 text-blue-600" />
+              </div>
+              <h1 className="text-2xl font-bold text-gray-800">FleetAudit Professional</h1>
+            </div>
             <div className="w-32" /> {/* Spacer for center alignment */}
           </div>
         </div>
       </header>
 
-      <div className="max-w-4xl mx-auto px-6 py-12">
+      <div className="max-w-6xl mx-auto px-6 py-12">
         {/* Progress Steps */}
-        <div className="mb-8">
-          <div className="flex items-center justify-center space-x-8">
-            <div className={`flex items-center space-x-2 ${hasAnyData ? 'text-green-600' : 'text-primary'}`}>
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${hasAnyData ? 'bg-green-600' : 'bg-primary'} text-white`}>
-                <Upload className="h-4 w-4" />
+        <Card className="mb-8 bg-white/80 backdrop-blur">
+          <CardContent className="pt-6">
+            <div className="flex items-center justify-center space-x-8">
+              <div className={`flex items-center space-x-3 ${hasAnyData ? 'text-green-600' : 'text-blue-600'}`}>
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${hasAnyData ? 'bg-green-600' : 'bg-blue-600'} text-white shadow-lg`}>
+                  <Upload className="h-5 w-5" />
+                </div>
+                <span className="font-semibold">Upload Data</span>
+                {hasAnyData && <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">✓ Complete</span>}
               </div>
-              <span className="font-medium">Upload Data</span>
-            </div>
-            
-            <div className={`w-16 h-1 rounded ${hasAnyData ? 'bg-green-200' : 'bg-gray-200'}`} />
-            
-            <div className={`flex items-center space-x-2 ${analysisState.isAnalyzing ? 'text-blue-600' : hasResults ? 'text-green-600' : 'text-gray-400'}`}>
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${analysisState.isAnalyzing ? 'bg-blue-600' : hasResults ? 'bg-green-600' : 'bg-gray-300'} text-white`}>
-                <Activity className="h-4 w-4" />
+              
+              <div className={`w-20 h-2 rounded-full ${hasAnyData ? 'bg-green-200' : 'bg-gray-200'}`} />
+              
+              <div className={`flex items-center space-x-3 ${analysisState.isAnalyzing ? 'text-blue-600' : hasResults ? 'text-green-600' : 'text-gray-400'}`}>
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${analysisState.isAnalyzing ? 'bg-blue-600' : hasResults ? 'bg-green-600' : 'bg-gray-300'} text-white shadow-lg`}>
+                  <Activity className={`h-5 w-5 ${analysisState.isAnalyzing ? 'animate-spin' : ''}`} />
+                </div>
+                <span className="font-semibold">AI Analysis</span>
+                {hasResults && <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">✓ Complete</span>}
               </div>
-              <span className="font-medium">Analyze</span>
-            </div>
-            
-            <div className={`w-16 h-1 rounded ${hasResults ? 'bg-green-200' : 'bg-gray-200'}`} />
-            
-            <div className={`flex items-center space-x-2 ${hasResults ? 'text-green-600' : 'text-gray-400'}`}>
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${hasResults ? 'bg-green-600' : 'bg-gray-300'} text-white`}>
-                <FileText className="h-4 w-4" />
+              
+              <div className={`w-20 h-2 rounded-full ${hasResults ? 'bg-green-200' : 'bg-gray-200'}`} />
+              
+              <div className={`flex items-center space-x-3 ${hasResults ? 'text-green-600' : 'text-gray-400'}`}>
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${hasResults ? 'bg-green-600' : 'bg-gray-300'} text-white shadow-lg`}>
+                  <FileText className="h-5 w-5" />
+                </div>
+                <span className="font-semibold">Results & Reports</span>
+                {hasResults && <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">✓ Ready</span>}
               </div>
-              <span className="font-medium">Results</span>
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
 
         {/* File Upload Section */}
         {!hasResults && (
-          <div className="space-y-6 mb-8">
-            <Card className="mb-6">
+          <div className="grid lg:grid-cols-3 gap-6 mb-8">
+            <Card className="border-red-200 bg-red-50/30 hover:shadow-lg transition-all">
               <CardHeader>
-                <CardTitle>Fuel Data <span className="text-red-500">*</span></CardTitle>
-                <CardDescription>Upload your fuel card transactions (.CSV or .XLSX)</CardDescription>
+                <CardTitle className="flex items-center gap-2">
+                  <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                    <Upload className="h-4 w-4 text-red-600" />
+                  </div>
+                  Fuel Data <span className="text-red-500 text-sm">*Required</span>
+                </CardTitle>
+                <CardDescription>Upload fuel card transactions from WEX, Fleetcor, etc.</CardDescription>
               </CardHeader>
               <CardContent>
                 <FileUpload
@@ -132,13 +147,22 @@ export default function AppPage() {
                   acceptedFileTypes=".csv,.xlsx"
                   uploadedFile={uploadedFiles.fuel}
                 />
+                <div className="mt-4 text-xs text-gray-500">
+                  <p className="font-medium mb-1">Expected columns:</p>
+                  <p>Date, Time, Vehicle, Driver, Location, Gallons, Card Number</p>
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="mb-6">
+            <Card className="border-blue-200 bg-blue-50/30 hover:shadow-lg transition-all">
               <CardHeader>
-                <CardTitle>GPS Data <span className="text-muted-foreground text-sm">Optional</span></CardTitle>
-                <CardDescription>Upload vehicle location tracking data (.CSV or .XLSX)</CardDescription>
+                <CardTitle className="flex items-center gap-2">
+                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                    <MapPin className="h-4 w-4 text-blue-600" />
+                  </div>
+                  GPS Data <span className="text-blue-500 text-sm">Optional</span>
+                </CardTitle>
+                <CardDescription>Vehicle location data from Samsara, Geotab, etc.</CardDescription>
               </CardHeader>
               <CardContent>
                 <FileUpload
@@ -146,13 +170,22 @@ export default function AppPage() {
                   acceptedFileTypes=".csv,.xlsx"
                   uploadedFile={uploadedFiles.gps}
                 />
+                <div className="mt-4 text-xs text-gray-500">
+                  <p className="font-medium mb-1">Expected columns:</p>
+                  <p>Timestamp, Vehicle ID, Latitude, Longitude</p>
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="mb-6">
+            <Card className="border-green-200 bg-green-50/30 hover:shadow-lg transition-all">
               <CardHeader>
-                <CardTitle>Job Data <span className="text-muted-foreground text-sm">Optional</span></CardTitle>
-                <CardDescription>Upload scheduled job/delivery data (.CSV or .XLSX)</CardDescription>
+                <CardTitle className="flex items-center gap-2">
+                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                    <Database className="h-4 w-4 text-green-600" />
+                  </div>
+                  Job Data <span className="text-green-500 text-sm">Optional</span>
+                </CardTitle>
+                <CardDescription>Scheduled jobs from Jobber, ServiceTitan, etc.</CardDescription>
               </CardHeader>
               <CardContent>
                 <FileUpload
@@ -160,6 +193,10 @@ export default function AppPage() {
                   acceptedFileTypes=".csv,.xlsx"
                   uploadedFile={uploadedFiles.jobs}
                 />
+                <div className="mt-4 text-xs text-gray-500">
+                  <p className="font-medium mb-1">Expected columns:</p>
+                  <p>Job ID, Date, Vehicle, Driver, Address</p>
+                </div>
               </CardContent>
             </Card>
           </div>
