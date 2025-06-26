@@ -7,7 +7,7 @@ import { AnalysisState, UploadedFile } from '@/types'
 import { FileUpload } from '@/components/upload/file-upload'
 import { DataPreview } from '@/components/upload/data-preview'
 import { FraudResults } from '@/components/results/fraud-results'
-import { Upload, Activity, FileText, ArrowLeft } from 'lucide-react'
+import { Upload, Activity, FileText, ArrowLeft, MapPin, Database } from 'lucide-react'
 import Link from 'next/link'
 
 export default function AppPage() {

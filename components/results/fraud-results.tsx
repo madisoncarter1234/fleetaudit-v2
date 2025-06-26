@@ -122,10 +122,9 @@ export function FraudResults({ results, onStartOver }: FraudResultsProps) {
       {/* Action Buttons */}
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <Button
-          variant="fleetaudit"
           size="lg"
           onClick={handleDownloadReport}
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700"
         >
           <Download className="h-4 w-4" />
           Download PDF Report
