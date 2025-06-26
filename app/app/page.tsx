@@ -72,22 +72,22 @@ export default function AppPage() {
   const hasResults = analysisState.fraud_results
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
-        <div className="container mx-auto px-4 py-4">
+        <div className="max-w-4xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2 text-primary hover:text-primary/80">
               <ArrowLeft className="h-5 w-5" />
               <span className="font-semibold">Back to Home</span>
             </Link>
-            <h1 className="text-2xl font-bold text-primary">FleetAudit Analysis</h1>
+            <h1 className="text-2xl font-bold">FleetAudit Analysis</h1>
             <div className="w-32" /> {/* Spacer for center alignment */}
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="max-w-4xl mx-auto px-6 py-12">
         {/* Progress Steps */}
         <div className="mb-8">
           <div className="flex items-center justify-center space-x-8">
@@ -120,17 +120,11 @@ export default function AppPage() {
 
         {/* File Upload Section */}
         {!hasResults && (
-          <div className="grid lg:grid-cols-3 gap-6 mb-8">
-            <Card>
+          <div className="space-y-6 mb-8">
+            <Card className="mb-6">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Upload className="h-5 w-5 text-red-500" />
-                  Fuel Data
-                  <span className="text-sm text-red-500">*Required</span>
-                </CardTitle>
-                <CardDescription>
-                  Upload fuel card transaction data (CSV format)
-                </CardDescription>
+                <CardTitle>Fuel Data <span className="text-red-500">*</span></CardTitle>
+                <CardDescription>Upload your fuel card transactions (.CSV or .XLSX)</CardDescription>
               </CardHeader>
               <CardContent>
                 <FileUpload
@@ -141,16 +135,10 @@ export default function AppPage() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="mb-6">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Upload className="h-5 w-5 text-blue-500" />
-                  GPS Data
-                  <span className="text-sm text-gray-500">Optional</span>
-                </CardTitle>
-                <CardDescription>
-                  Upload vehicle location tracking data
-                </CardDescription>
+                <CardTitle>GPS Data <span className="text-muted-foreground text-sm">Optional</span></CardTitle>
+                <CardDescription>Upload vehicle location tracking data (.CSV or .XLSX)</CardDescription>
               </CardHeader>
               <CardContent>
                 <FileUpload
@@ -161,16 +149,10 @@ export default function AppPage() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="mb-6">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Upload className="h-5 w-5 text-green-500" />
-                  Job Data
-                  <span className="text-sm text-gray-500">Optional</span>
-                </CardTitle>
-                <CardDescription>
-                  Upload scheduled job/delivery data
-                </CardDescription>
+                <CardTitle>Job Data <span className="text-muted-foreground text-sm">Optional</span></CardTitle>
+                <CardDescription>Upload scheduled job/delivery data (.CSV or .XLSX)</CardDescription>
               </CardHeader>
               <CardContent>
                 <FileUpload
@@ -205,7 +187,6 @@ export default function AppPage() {
           <div className="text-center mb-8">
             <Button
               size="lg"
-              variant="fleetaudit"
               onClick={handleAnalyze}
               disabled={analysisState.isAnalyzing || !uploadedFiles.fuel}
               className="px-8 py-3"

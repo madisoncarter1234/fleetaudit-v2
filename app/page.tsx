@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { demoScenarios } from '@/lib/demo-data'
 import { formatCurrency } from '@/lib/utils'
 import { DemoScenario, Violation } from '@/types'
-import { AlertTriangle, Shield, TrendingUp, FileText, ChevronRight } from 'lucide-react'
+import { AlertTriangle, Shield, TrendingUp, FileText, ChevronRight, Database, Clock, MapPin } from 'lucide-react'
 
 export default function LandingPage() {
   const [selectedDemo, setSelectedDemo] = useState<DemoScenario | null>(null)
@@ -31,108 +31,119 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="hero-gradient text-white py-20 px-6 mx-6 mt-6 mb-12">
-        <div className="container mx-auto text-center relative z-10">
-          <h1 className="hero-title fade-in-up">
-            FleetAudit.io
-          </h1>
-          <p className="hero-subtitle max-w-4xl mx-auto fade-in-up">
+      <div className="max-w-4xl mx-auto px-6 py-12">
+        <div className="text-center mb-10">
+          <h1 className="text-4xl font-bold mb-4">FleetAudit.io</h1>
+          <p className="text-muted-foreground mb-10 text-lg">
             AI-powered fleet fraud detection that analyzes fuel, GPS, and job data to uncover theft, 
-            misuse, and policy violations in real-time. Protect your fleet with advanced analytics.
+            misuse, and policy violations in real-time.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center fade-in-up">
-            <Link href="/app" className="btn-primary text-lg px-8 py-4">
-              Try FleetAudit Now
-              <ChevronRight className="ml-2 h-5 w-5" />
+          <div className="mt-6 space-x-4">
+            <Link href="/app">
+              <Button size="lg">Try FleetAudit Now</Button>
             </Link>
-            <button className="btn-secondary text-lg px-8 py-4">
-              Watch Demo
-            </button>
+            <Button variant="outline" size="lg">Watch Demo</Button>
           </div>
         </div>
-      </section>
 
-      {/* Features Section */}
-      <section className="py-20 px-6">
-        <div className="container mx-auto">
-          <h2 className="section-title fade-in-up">
-            Advanced Fraud Detection Capabilities
-          </h2>
-          
-          <div className="grid md:grid-cols-3 gap-8 mb-20">
-            <div className="feature-card fade-in-up">
-              <AlertTriangle className="h-12 w-12 text-danger mb-4" />
-              <h3 className="text-xl font-bold text-primary mb-4">Shared Card Detection</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Identifies when the same fuel card is used by multiple drivers or vehicles within suspicious timeframes.
-              </p>
+        {/* Features Section */}
+        <Card className="mb-10">
+          <CardHeader>
+            <CardTitle className="text-center">Advanced Fraud Detection Capabilities</CardTitle>
+            <CardDescription className="text-center">
+              Protect your fleet with comprehensive AI-powered analysis
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="flex items-start space-x-4">
+              <AlertTriangle className="w-6 h-6 mt-1 text-red-500 flex-shrink-0" />
+              <div>
+                <h3 className="text-lg font-semibold mb-2">Shared Card Detection</h3>
+                <p className="text-muted-foreground">
+                  Identifies when the same fuel card is used by multiple drivers or vehicles within suspicious timeframes.
+                </p>
+              </div>
             </div>
 
-            <div className="feature-card fade-in-up">
-              <Shield className="h-12 w-12 text-warning mb-4" />
-              <h3 className="text-xl font-bold text-primary mb-4">After-Hours Monitoring</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Flags fuel purchases outside business hours and identifies personal use patterns during off-time.
-              </p>
+            <div className="flex items-start space-x-4">
+              <Clock className="w-6 h-6 mt-1 text-orange-500 flex-shrink-0" />
+              <div>
+                <h3 className="text-lg font-semibold mb-2">After-Hours Monitoring</h3>
+                <p className="text-muted-foreground">
+                  Flags fuel purchases outside business hours and identifies personal use patterns during off-time.
+                </p>
+              </div>
             </div>
 
-            <div className="feature-card fade-in-up">
-              <TrendingUp className="h-12 w-12 text-primary mb-4" />
-              <h3 className="text-xl font-bold text-primary mb-4">Ghost Job Analysis</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Cross-references scheduled jobs with GPS data to identify phantom work orders and location fraud.
-              </p>
+            <div className="flex items-start space-x-4">
+              <MapPin className="w-6 h-6 mt-1 text-blue-500 flex-shrink-0" />
+              <div>
+                <h3 className="text-lg font-semibold mb-2">Ghost Job Analysis</h3>
+                <p className="text-muted-foreground">
+                  Cross-references scheduled jobs with GPS data to identify phantom work orders and location fraud.
+                </p>
+              </div>
             </div>
-          </div>
 
-          {/* Demo Section */}
-          <div className="bg-white rounded-3xl shadow-2xl p-10 fade-in-up">
-            <h2 className="text-4xl font-bold text-center mb-6 text-primary">
-              Interactive Demo Scenarios
-            </h2>
-            <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto text-lg leading-relaxed">
-              Explore real-world examples of fleet fraud detection. Each scenario represents actual patterns 
-              found in fleet operations, with estimated financial impact and detailed violation analysis.
-            </p>
+            <div className="flex items-start space-x-4">
+              <Database className="w-6 h-6 mt-1 text-green-500 flex-shrink-0" />
+              <div>
+                <h3 className="text-lg font-semibold mb-2">Excessive Fuel Detection</h3>
+                <p className="text-muted-foreground">
+                  Monitors fuel purchases that exceed vehicle capacity limits and flags suspicious amounts.
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
-            <div className="grid md:grid-cols-3 gap-8 mb-12">
+        {/* Demo Section */}
+        <Card className="mb-10">
+          <CardHeader>
+            <CardTitle className="text-center">Interactive Demo Scenarios</CardTitle>
+            <CardDescription className="text-center">
+              Explore real-world examples of fleet fraud detection with actual violation patterns
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
               {demoScenarios.map((scenario) => (
-                <div 
+                <Card 
                   key={scenario.id}
-                  className={`demo-card p-6 ${
-                    selectedDemo?.id === scenario.id ? 'selected' : ''
+                  className={`cursor-pointer transition-all hover:shadow-lg ${
+                    selectedDemo?.id === scenario.id ? 'ring-2 ring-blue-500' : ''
                   }`}
                   onClick={() => setSelectedDemo(scenario)}
                 >
-                  <h3 className="text-xl font-bold text-primary mb-3">{scenario.name}</h3>
-                  <p className="text-gray-600 mb-6 text-sm leading-relaxed">{scenario.description}</p>
-                  
-                  <div className="space-y-4">
-                    <div className="metric-card">
-                      <div className="metric-value text-primary">{scenario.vehicles}</div>
-                      <div className="metric-label text-gray-500">Vehicles</div>
-                    </div>
-                    
-                    <div className="flex justify-between items-center">
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-danger">{scenario.summary.total_violations}</div>
-                        <div className="text-xs text-gray-500 uppercase tracking-wide">Violations</div>
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-lg">{scenario.name}</CardTitle>
+                    <CardDescription className="text-sm">{scenario.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Vehicles:</span>
+                        <span className="font-medium">{scenario.vehicles}</span>
                       </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-danger">{formatCurrency(scenario.summary.total_estimated_loss)}</div>
-                        <div className="text-xs text-gray-500 uppercase tracking-wide">Est. Loss</div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Violations:</span>
+                        <span className="font-medium text-red-600">{scenario.summary.total_violations}</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Est. Loss:</span>
+                        <span className="font-bold text-red-600">{formatCurrency(scenario.summary.total_estimated_loss)}</span>
                       </div>
                     </div>
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
 
             {/* Demo Results */}
             {selectedDemo && (
-              <Card className="bg-gray-50">
+              <Card className="bg-gray-50 border-blue-200">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <AlertTriangle className="h-5 w-5 text-red-500" />
@@ -146,81 +157,81 @@ export default function LandingPage() {
                 <CardContent>
                   <div className="space-y-4">
                     {selectedDemo.violations.map((violation: Violation, index: number) => (
-                      <div 
-                        key={index}
-                        className={`violation-card ${violation.severity} ${getSeverityColor(violation.severity)}`}
-                      >
-                        <div className="flex items-start gap-3">
-                          {getSeverityIcon(violation.severity)}
-                          <div className="flex-1">
-                            <div className="flex items-center justify-between mb-2">
-                              <h4 className="font-semibold capitalize">
-                                {violation.type.replace('_', ' ')}
-                              </h4>
-                              <span className={`px-2 py-1 rounded text-xs font-medium capitalize ${getSeverityColor(violation.severity)}`}>
-                                {violation.severity} Risk
-                              </span>
-                            </div>
-                            <p className="text-sm mb-2">{violation.description}</p>
-                            <div className="grid grid-cols-2 gap-4 text-xs">
-                              {violation.vehicle_id && (
-                                <div>
-                                  <span className="font-medium">Vehicle:</span> {violation.vehicle_id}
-                                </div>
-                              )}
-                              {violation.driver_name && (
-                                <div>
-                                  <span className="font-medium">Driver:</span> {violation.driver_name}
-                                </div>
-                              )}
-                              {violation.timestamp && (
-                                <div>
-                                  <span className="font-medium">Time:</span> {new Date(violation.timestamp).toLocaleString()}
-                                </div>
-                              )}
-                              <div>
-                                <span className="font-medium">Est. Loss:</span> {formatCurrency(violation.estimated_loss)}
+                      <Card key={index} className={`${getSeverityColor(violation.severity)} border-l-4`}>
+                        <CardContent className="pt-4">
+                          <div className="flex items-start gap-3">
+                            {getSeverityIcon(violation.severity)}
+                            <div className="flex-1">
+                              <div className="flex items-center justify-between mb-2">
+                                <h4 className="font-semibold capitalize">
+                                  {violation.type.replace('_', ' ')}
+                                </h4>
+                                <span className="px-2 py-1 rounded text-xs font-medium capitalize bg-white border">
+                                  {violation.severity} Risk
+                                </span>
                               </div>
-                            </div>
-                            {violation.transactions && (
-                              <div className="mt-3 pt-3 border-t border-gray-200">
-                                <p className="text-xs font-medium mb-2">Transaction Details:</p>
-                                {violation.transactions.map((transaction, txIndex) => (
-                                  <div key={txIndex} className="text-xs text-gray-600 mb-1">
-                                    {new Date(transaction.timestamp).toLocaleString()} - {transaction.vehicle_id} 
-                                    ({transaction.driver_name}) at {transaction.location}
+                              <p className="text-sm mb-3">{violation.description}</p>
+                              <div className="grid grid-cols-2 gap-4 text-sm">
+                                {violation.vehicle_id && (
+                                  <div>
+                                    <span className="font-medium">Vehicle:</span> {violation.vehicle_id}
                                   </div>
-                                ))}
+                                )}
+                                {violation.driver_name && (
+                                  <div>
+                                    <span className="font-medium">Driver:</span> {violation.driver_name}
+                                  </div>
+                                )}
+                                {violation.timestamp && (
+                                  <div>
+                                    <span className="font-medium">Time:</span> {new Date(violation.timestamp).toLocaleString()}
+                                  </div>
+                                )}
+                                <div>
+                                  <span className="font-medium">Est. Loss:</span> {formatCurrency(violation.estimated_loss)}
+                                </div>
                               </div>
-                            )}
+                              {violation.transactions && (
+                                <div className="mt-4 pt-3 border-t">
+                                  <p className="text-sm font-medium mb-2">Transaction Details:</p>
+                                  {violation.transactions.map((transaction, txIndex) => (
+                                    <div key={txIndex} className="text-sm text-muted-foreground mb-1">
+                                      {new Date(transaction.timestamp).toLocaleString()} - {transaction.vehicle_id} 
+                                      ({transaction.driver_name}) at {transaction.location}
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      </div>
+                        </CardContent>
+                      </Card>
                     ))}
                   </div>
                 </CardContent>
               </Card>
             )}
-          </div>
-        </div>
-      </section>
+          </CardContent>
+        </Card>
 
-      {/* CTA Section */}
-      <section className="py-20 px-6 bg-primary">
-        <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6 text-white">
-            Ready to Protect Your Fleet?
-          </h2>
-          <p className="text-xl mb-10 text-white opacity-90 max-w-3xl mx-auto leading-relaxed">
-            Start detecting fraud in your fleet operations today. Upload your data and get instant AI-powered analysis 
-            with professional reports and actionable insights.
-          </p>
-          <Link href="/app" className="btn-primary bg-white text-primary hover:bg-gray-100 text-xl px-12 py-5 shadow-2xl">
-            Start Free Analysis
-            <ChevronRight className="ml-3 h-6 w-6" />
-          </Link>
-        </div>
-      </section>
+        {/* CTA Section */}
+        <Card className="text-center bg-blue-50 border-blue-200">
+          <CardHeader>
+            <CardTitle className="text-2xl">Ready to Protect Your Fleet?</CardTitle>
+            <CardDescription>
+              Start detecting fraud in your fleet operations today. Upload your data and get instant AI-powered analysis.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="mt-6 space-x-4">
+              <Link href="/app">
+                <Button size="lg">Start Free Analysis</Button>
+              </Link>
+              <Button variant="outline" size="lg">Learn More</Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   )
 }
